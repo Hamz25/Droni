@@ -1,6 +1,6 @@
 # Droni
 
-An autonomous drone, built by **Hamza ("Spoon")** and **Haider Ali** as our final-year project.
+An autonomous drone, built by **Hamza Ahmed ("Spoon")** and **Haider Ali** and **Hussain Sarhan (V1P3R)** as our final-year project.
 
 Hamza is building the brain - the AI and autonomy software that flies the drone. Haider is building the body - picking, wiring, and assembling the physical drone. We're documenting the project and working on it every day, because that's the only way something like this actually gets finished well.
 
@@ -25,8 +25,9 @@ We're not designing our own circuit boards or 3D-modeling our own parts - see `d
 
 | | Working on | Docs |
 |---|---|---|
-| **Hamza** - Spoon | `Brain/` - the AI / autonomy code | `docs/software/` |
+| **Hamza Ahmed** - Spoon | `Brain/` - the AI / autonomy code | `docs/software/` |
 | **Haider Ali** | `Body/` - picking parts, wiring, building | `docs/hardware/` |
+| **Hussain Sarhan** | `Body/` - programming the body, building, documenting | `docs/hardware` |
 
 ## How the project is organized
 
