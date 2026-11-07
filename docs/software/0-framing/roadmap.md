@@ -11,15 +11,16 @@ The roadmap makes three things clear at any point in the project: the current po
 ## Table of Contents
 
 1. [The Big Picture](#1-the-big-picture)
-2. [Stage 1: Research and Data Collection](#stage-1-research-and-data-collection)
-3. [Stage 2: Define the Purpose, Design the Neural Network, Documentation and ADRs](#stage-2-define-the-purpose-design-the-neural-network-documentation-and-adrs)
-4. [Stage 3: Test and Optimize](#stage-3-test-and-optimize)
-5. [Stage 4: Train the Neural Network and Create the Autonomous Drone](#stage-4-train-the-neural-network-and-create-the-autonomous-drone)
-6. [Stage 5: Real Drone, Real Components, Real Sensor Data](#stage-5-real-drone-real-components-real-sensor-data)
-7. [Stage 6: Give the Drone a Purpose](#stage-6-give-the-drone-a-purpose)
-8. [Safety Rules](#safety-rules)
-9. [Known Risks](#known-risks)
-10. [Progress Tracker](#progress-tracker)
+2. [Documentation Structure](#documentation-structure)
+3. [Stage 1: Research and Data Collection](#stage-1-research-and-data-collection)
+4. [Stage 2: Define the Purpose, Design the Neural Network, Documentation and ADRs](#stage-2-define-the-purpose-design-the-neural-network-documentation-and-adrs)
+5. [Stage 3: Test and Optimize](#stage-3-test-and-optimize)
+6. [Stage 4: Train the Neural Network and Create the Autonomous Drone](#stage-4-train-the-neural-network-and-create-the-autonomous-drone)
+7. [Stage 5: Real Drone, Real Components, Real Sensor Data](#stage-5-real-drone-real-components-real-sensor-data)
+8. [Stage 6: Give the Drone a Purpose](#stage-6-give-the-drone-a-purpose)
+9. [Safety Rules](#safety-rules)
+10. [Known Risks](#known-risks)
+11. [Progress Tracker](#progress-tracker)
 
 ---
 
@@ -71,6 +72,193 @@ flowchart TD
 | 4 | Train the neural network and build the autonomous drone | A trained model that flies the drone in simulation | The drone completes missions in simulation reliably |
 | 5 | Build the real drone and run it with real sensor data | A real drone that flies with the model and real sensors | It completes missions safely in the real world |
 | 6 | Add a feature with a purpose | A watering or fertilizing drone | It completes a real task on real plants |
+
+---
+
+## Documentation Structure
+
+All project documentation lives in `docs/` and is split into two tracks: **hardware** and **software**. Each track moves through numbered phases, from framing to production (hardware) or delivery (software). Cross-cutting folders hold the topics that apply to every phase: safety, regulation, testing, verification and traceability.
+
+> **Naming note:** The numbered phases in the documentation folders (`0-framing`, `1-requirements`, and so on) are different from the six roadmap stages in this file. The mapping table below shows which stage fills which folders.
+
+### Folder Tree
+
+```text
+Droni/
+└── docs/
+    ├── hardware/
+    │   ├── 0-framing/
+    │   │   ├── roadmap.md
+    │   │   └── vision-and-scope.md
+    │   ├── 1-requirements/
+    │   │   ├── functional-requirements.md
+    │   │   ├── mission-requirements.md
+    │   │   └── nfr.md
+    │   ├── 2-architecture/
+    │   │   ├── adr/
+    │   │   │   ├── 0001-frame-topology.md
+    │   │   │   └── 0001-off-the-shelf-hardware.md
+    │   │   ├── interface-control-documents.md
+    │   │   └── system-block-diagram.md
+    │   ├── 3-high-level-design/
+    │   │   ├── mechanical-layout.md
+    │   │   └── power-budget.md
+    │   ├── 4-detailed-design/
+    │   │   ├── electrical/
+    │   │   │   ├── pcb-layout-notes.md
+    │   │   │   └── schematics.md
+    │   │   ├── hardware-software-interface.md
+    │   │   └── mechanical/
+    │   │       ├── cad-notes.md
+    │   │       ├── material-selection.md
+    │   │       └── structural-analysis.md
+    │   ├── 4-integration-design/
+    │   │   ├── configuration.md
+    │   │   ├── hardware-software-interface.md
+    │   │   ├── mounting-plan.md
+    │   │   └── wiring-diagram.md
+    │   ├── 5-integration-and-verification/
+    │   │   ├── bench-test-plan.md
+    │   │   ├── bring-up-procedures.md
+    │   │   ├── flight-test-plan.md
+    │   │   └── test-reports/
+    │   │       └── README.md
+    │   ├── 6-assembly/
+    │   │   ├── assembly-instructions.md
+    │   │   ├── bill-of-materials.md
+    │   │   ├── component_bill.xlsx
+    │   │   └── maintenance-and-logistics.md
+    │   ├── 6-production/
+    │   │   ├── assembly-instructions.md
+    │   │   ├── bill-of-materials.md
+    │   │   ├── dfm-notes.md
+    │   │   └── maintenance-and-logistics.md
+    │   ├── architecture/
+    │   ├── components/
+    │   │   ├── batteries.md
+    │   │   ├── flight-controllers.md
+    │   │   ├── frame-and-propellers.md
+    │   │   ├── motors-and-escs.md
+    │   │   └── sensors-and-payload.md
+    │   ├── cross-cutting/
+    │   │   ├── safety-and-compliance/
+    │   │   │   ├── failure-modes-and-effects.md
+    │   │   │   ├── regulatory-requirements.md
+    │   │   │   └── safety-case.md
+    │   │   ├── traceability/
+    │   │   │   └── requirements-traceability-matrix.md
+    │   │   └── verification/
+    │   │       └── test-and-verification-plan.md
+    │   ├── design/
+    │   ├── how-to-work/
+    │   ├── methodology.md
+    │   ├── notes/
+    │   ├── README.md
+    │   ├── road-map/
+    │   └── sources/
+    └── software/
+        ├── 0-framing/
+        │   ├── roadmap.md
+        │   └── vision-and-scope.md
+        ├── 1-problem-space/
+        │   ├── domain-model.md
+        │   ├── edge-case-research.md
+        │   ├── nfr.md
+        │   ├── requirements-spec.md
+        │   └── use-cases.md
+        ├── 2-architecture/
+        │   ├── adr/
+        │   │   └── 0001-example-decision.md
+        │   ├── c4-container.md
+        │   └── c4-context.md
+        ├── 3-high-level-design/
+        │   ├── aggregate-model.md
+        │   └── component-diagram.md
+        ├── 4-detailed-design/
+        │   ├── api-contract.md
+        │   ├── erd.md
+        │   ├── lifecycles.md
+        │   └── sequence-flows.md
+        ├── 5-delivery/
+        │   ├── build-plan.md
+        │   └── ci-cd-and-ops.md
+        ├── architecture/
+        ├── cross-cutting/
+        │   ├── security/
+        │   │   └── threat-model.md
+        │   ├── testing/
+        │   │   └── test-strategy.md
+        │   └── traceability/
+        │       └── rtm.md
+        ├── domain/
+        ├── high-level-design/
+        ├── how-to-work/
+        ├── methodology.md
+        ├── notes/
+        ├── README.md
+        ├── requierments/
+        │   ├── fr/
+        │   └── nfr/
+        ├── road-map/
+        └── sources/
+            └── ENGINEERING-ROADMAP.pdf
+```
+
+Code and data folders (for example `sim/`, `ml/`, `firmware/`, `data/` and `tests/`) live next to `docs/` and are created when the stage that needs them starts.
+
+### What Each Folder Is For
+
+| Folder | Purpose |
+|--------|---------|
+| `0-framing` | Vision, scope and the roadmap |
+| `1-requirements` (hardware), `1-problem-space` (software) | What the system must do: functional, mission and non-functional requirements, domain model, use cases and edge cases |
+| `2-architecture` | System block diagram, interfaces, C4 diagrams and the ADRs |
+| `3-high-level-design` | Mechanical layout, power budget, components and aggregates |
+| `4-detailed-design` | Schematics, CAD and structural analysis (hardware). API contract, ERD, lifecycles and sequence flows (software) |
+| `4-integration-design` | Wiring, mounting, configuration and the hardware-software interface |
+| `5-integration-and-verification` | Bench tests, bring-up, flight tests and test reports |
+| `5-delivery` | Build plan, CI/CD and operations (software) |
+| `6-assembly`, `6-production` | Bill of materials, assembly instructions, maintenance, and DFM notes for production |
+| `components/` | Research notes for each component category |
+| `cross-cutting/` | Safety, regulation, verification, security, testing and traceability |
+| `sources/`, `notes/` | Reference material and raw research notes |
+| `methodology.md`, `how-to-work/`, `README.md` | How the documentation is written and used |
+
+### Documentation Flow
+
+```mermaid
+flowchart LR
+    subgraph HW["Hardware track"]
+        H0["0 Framing"] --> H1["1 Requirements"] --> H2["2 Architecture"] --> H3["3 High-level design"] --> H4["4 Detailed design<br/>and integration design"] --> H5["5 Integration<br/>and verification"] --> H6["6 Assembly<br/>and production"]
+    end
+    subgraph SW["Software track"]
+        S0["0 Framing"] --> S1["1 Problem space"] --> S2["2 Architecture"] --> S3["3 High-level design"] --> S4["4 Detailed design"] --> S5["5 Delivery"]
+    end
+    CC["Cross-cutting<br/>safety, regulation, testing,<br/>verification, traceability"]
+    CC -.-> HW
+    CC -.-> SW
+
+    classDef hw fill:#ffedd5,stroke:#ea580c,color:#111
+    classDef sw fill:#dbeafe,stroke:#2563eb,color:#111
+    classDef cc fill:#fef9c3,stroke:#ca8a04,color:#111
+    class H0,H1,H2,H3,H4,H5,H6 hw
+    class S0,S1,S2,S3,S4,S5 sw
+    class CC cc
+```
+
+### Mapping: Roadmap Stages to Documentation Folders
+
+All paths are relative to `docs/hardware/` or `docs/software/`.
+
+| Roadmap stage | Hardware track | Software track |
+|---------------|----------------|----------------|
+| Stage 1: Research | `components/`, `sources/`, `notes/`, `cross-cutting/safety-and-compliance/regulatory-requirements.md` | `sources/`, `notes/`, `1-problem-space/edge-case-research.md` |
+| Stage 2: Purpose, design, docs, ADRs | `0-framing` to `3-high-level-design` | `0-framing` to `4-detailed-design` |
+| Stage 3: Test and optimize | `cross-cutting/verification/`, `5-integration-and-verification/bench-test-plan.md` | `cross-cutting/testing/`, `5-delivery/ci-cd-and-ops.md` |
+| Stage 4: Train and create the autonomous drone | `2-architecture/interface-control-documents.md` (interfaces kept in sync with the simulation) | `5-delivery/build-plan.md`, `4-detailed-design/sequence-flows.md`, `4-detailed-design/lifecycles.md` |
+| Stage 5: Real drone and real sensor data | `4-detailed-design`, `4-integration-design`, `5-integration-and-verification`, `6-assembly` | `5-delivery`, `cross-cutting/security/threat-model.md` |
+| Stage 6: Purpose | `components/sensors-and-payload.md`, `3-high-level-design`, `4-integration-design`, `cross-cutting/safety-and-compliance/` | `4-detailed-design/lifecycles.md`, `4-detailed-design/sequence-flows.md` |
+| Throughout | `cross-cutting/traceability/`, `6-production` (only when going beyond a one-off drone) | `cross-cutting/traceability/rtm.md` |
 
 ---
 
@@ -170,13 +358,16 @@ flowchart LR
 ```
 
 ### Deliverables
-- [ ] Research notes file with summaries of the papers and projects
-- [ ] Sensor comparison table
-- [ ] Dataset list (name, link, size, license, sensors, usefulness)
-- [ ] Simulator comparison table
-- [ ] Flight stack comparison (PX4 vs ArduPilot)
-- [ ] Short note about the drone laws of the country of operation
-- [ ] List of open questions
+- [ ] Research notes with summaries of the papers and projects: `docs/hardware/notes/` and `docs/software/notes/`
+- [ ] Sensor comparison table: `docs/hardware/components/sensors-and-payload.md`
+- [ ] Notes for the other component categories: `docs/hardware/components/` (`batteries.md`, `frame-and-propellers.md`, `motors-and-escs.md`)
+- [ ] Flight stack and flight controller comparison (PX4 vs ArduPilot): `docs/hardware/components/flight-controllers.md`
+- [ ] Dataset list (name, link, size, license, sensors, usefulness): `docs/software/notes/datasets.md` (new file)
+- [ ] Simulator comparison table: `docs/software/notes/simulator-comparison.md` (new file)
+- [ ] Edge cases found during research: `docs/software/1-problem-space/edge-case-research.md`
+- [ ] Short note about the drone laws of the country of operation: `docs/hardware/cross-cutting/safety-and-compliance/regulatory-requirements.md`
+- [ ] Reference papers and PDFs: `docs/software/sources/` and `docs/hardware/sources/`
+- [ ] List of open questions: `docs/hardware/notes/open-questions.md` (new file)
 
 ### Completion Criteria
 Stage 1 is complete when it is possible to explain, in simple words, how the drone will fly, which sensors it might use, where the training data will come from, and which tools will be used to simulate it.
@@ -307,40 +498,36 @@ Nothing is purchased at this point. Only the direction is decided so the softwar
 
 | Part | Options under consideration | Decision recorded in |
 |------|-----------------------------|----------------------|
-| Flight controller | Pixhawk-compatible board running PX4 or ArduPilot | ADR-001 |
-| Companion computer | Raspberry Pi 5 or NVIDIA Jetson | ADR-006 |
-| Camera | Wide-angle RGB camera, possibly a depth camera | ADR-005 |
-| Distance sensor | Time-of-flight or LiDAR rangefinder | ADR-005 |
-| Communication | MAVLink between companion computer and flight controller | ADR-007 |
+| Flight controller | Pixhawk-compatible board running PX4 or ArduPilot | Hardware ADR 0005, Software ADR 0001 |
+| Companion computer | Raspberry Pi 5 or NVIDIA Jetson | Hardware ADR 0004 |
+| Camera | Wide-angle RGB camera, possibly a depth camera | Hardware ADR 0003 |
+| Distance sensor | Time-of-flight or LiDAR rangefinder | Hardware ADR 0003 |
+| Communication | MAVLink between companion computer and flight controller | Software ADR 0005 |
 
 ### Step 2.6: Write the Documentation
 
-The documentation lives in the same repository as the code so the two always stay together.
+The documentation follows the structure described in [Documentation Structure](#documentation-structure) and lives in the same repository as the code. Stage 2 fills the early phases of both tracks:
 
-```text
-drone-project/
-├── docs/
-│   ├── roadmap.md              <- this file
-│   ├── research/               <- Stage 1 notes, tables, paper summaries
-│   ├── architecture/           <- system diagrams and explanations
-│   ├── adr/                    <- all decision records
-│   └── test-reports/           <- results from Stage 3 onwards
-├── sim/                        <- simulation worlds and scripts
-├── ml/                         <- datasets, models, training code
-├── firmware/                   <- flight controller config and companion code
-├── hardware/                   <- parts list, wiring diagrams, build notes
-├── data/                       <- logs and recorded sensor data
-└── tests/                      <- automated tests
-```
+| Phase | Hardware track (`docs/hardware/`) | Software track (`docs/software/`) |
+|-------|-----------------------------------|-----------------------------------|
+| `0-framing` | `vision-and-scope.md`, `roadmap.md` | `vision-and-scope.md`, `roadmap.md` |
+| `1-requirements` / `1-problem-space` | `functional-requirements.md`, `mission-requirements.md`, `nfr.md` | `domain-model.md`, `requirements-spec.md`, `use-cases.md`, `nfr.md`, `edge-case-research.md` |
+| `2-architecture` | `system-block-diagram.md`, `interface-control-documents.md`, `adr/` | `c4-context.md`, `c4-container.md`, `adr/` |
+| `3-high-level-design` | `mechanical-layout.md`, `power-budget.md` | `component-diagram.md`, `aggregate-model.md` |
+| `4-detailed-design` | Not yet. It waits for Stage 5, when the parts are chosen | `api-contract.md`, `erd.md`, `lifecycles.md`, `sequence-flows.md` |
+
+The `traceability` files in `cross-cutting/` are started here as well, so every requirement can be followed to a design decision and later to a test.
 
 ### Step 2.7: Write the ADRs
 
 An ADR (Architecture Decision Record) is a short document that explains **one decision**: what was decided, why, and what it costs. One is written every time an important choice is made, so the reason behind it can be recovered later.
 
+**Location and naming:** hardware ADRs live in `docs/hardware/2-architecture/adr/` and software ADRs in `docs/software/2-architecture/adr/`. Files are named `NNNN-short-title.md`, and numbers are unique within each track.
+
 **ADR template:**
 
 ```markdown
-# ADR-000: Title of the decision
+# ADR-0000: Title of the decision
 
 - **Status:** Proposed | Accepted | Replaced by ADR-XXX
 - **Date:** YYYY-MM-DD
@@ -361,24 +548,36 @@ What gets easier? What gets harder? What needs to be watched?
 
 **ADRs planned for this stage:**
 
-| ADR | Decision |
-|-----|----------|
-| ADR-001 | Flight stack: PX4 or ArduPilot |
-| ADR-002 | Simulator used for development and training |
-| ADR-003 | ML framework and model export format |
-| ADR-004 | Neural network role: end-to-end or high-level only |
-| ADR-005 | Sensor set for the first real drone |
-| ADR-006 | Companion computer |
-| ADR-007 | Communication protocol between companion computer and flight controller |
-| ADR-008 | Safety and failsafe strategy |
+Hardware track, in `docs/hardware/2-architecture/adr/`:
+
+| File | Decision |
+|------|----------|
+| `0001-off-the-shelf-hardware.md` | Off-the-shelf parts vs custom hardware |
+| `0002-frame-topology.md` | Frame topology (the existing `0001-frame-topology.md` is renumbered so the two files no longer share 0001) |
+| `0003-sensor-set.md` | Sensor set for the first real drone |
+| `0004-companion-computer.md` | Raspberry Pi 5 or NVIDIA Jetson |
+| `0005-flight-controller.md` | Flight controller hardware |
+
+Software track, in `docs/software/2-architecture/adr/`:
+
+| File | Decision |
+|------|----------|
+| `0001-flight-stack.md` | PX4 or ArduPilot (replaces the placeholder `0001-example-decision.md`) |
+| `0002-simulator.md` | Simulator used for development and training |
+| `0003-ml-framework-and-export-format.md` | ML framework and model export format |
+| `0004-neural-network-role.md` | Neural network role: end-to-end or high-level only |
+| `0005-mavlink-communication.md` | Communication between companion computer and flight controller |
+| `0006-safety-and-failsafe-strategy.md` | Failsafes, geofence and manual override (referenced from the hardware safety case) |
 
 ### Deliverables
-- [ ] One-page purpose statement with what is in scope and out of scope
-- [ ] System architecture diagram
-- [ ] Neural network design document (inputs, outputs, learning method)
-- [ ] Repository structure created
-- [ ] ADR-001 to ADR-008 written
-- [ ] Measurable targets for Stage 3 (see below)
+- [ ] Purpose statement with what is in scope and out of scope: `docs/hardware/0-framing/vision-and-scope.md` and `docs/software/0-framing/vision-and-scope.md`
+- [ ] Requirements: `docs/hardware/1-requirements/` and `docs/software/1-problem-space/`
+- [ ] System architecture diagrams: `docs/hardware/2-architecture/system-block-diagram.md`, `docs/software/2-architecture/c4-context.md` and `c4-container.md`
+- [ ] Interfaces between sensors, companion computer and flight controller: `docs/hardware/2-architecture/interface-control-documents.md`
+- [ ] Neural network design (inputs, outputs, learning method): `docs/software/3-high-level-design/component-diagram.md` and `docs/software/4-detailed-design/`
+- [ ] Hardware ADRs 0001 to 0005 and software ADRs 0001 to 0006 written
+- [ ] Measurable targets for Stage 3: `docs/software/1-problem-space/nfr.md` and `docs/hardware/1-requirements/nfr.md`
+- [ ] Traceability started: `docs/hardware/cross-cutting/traceability/requirements-traceability-matrix.md` and `docs/software/cross-cutting/traceability/rtm.md`
 
 ### Completion Criteria
 Stage 2 is complete when someone who has never seen the project can read the docs and understand what the drone does, how it is built, and why each choice was made.
@@ -392,7 +591,7 @@ Before spending a lot of time and compute on full training, prove that the **pip
 
 ### Step 3.1: Set Measurable Targets
 
-Testing is based on numbers, not impressions, and the numbers are written first. These are starting targets and can be changed through an ADR when there is a good reason:
+Testing is based on numbers, not impressions, and the numbers are written first. These are starting targets and can be changed through an ADR when there is a good reason. They are recorded as non-functional requirements in `docs/software/1-problem-space/nfr.md`, and hardware limits (weight, power, flight time) in `docs/hardware/1-requirements/nfr.md`:
 
 | Metric | Target |
 |--------|--------|
@@ -422,7 +621,7 @@ flowchart TD
 - **Sensor test:** the simulated sensors give data in the same format as the real sensors will later.
 - **Communication test:** a command can be sent and the drone moves the way it is expected to.
 - **Prototype network test:** a very small network is trained on a small dataset to prove that data goes in, a decision comes out, and the drone moves. The result does not need to be good. It needs to **work**.
-- **Safety test:** when the connection is cut, the battery level drops, or the drone leaves the allowed area, the drone does what ADR-008 specifies.
+- **Safety test:** when the connection is cut, the battery level drops, or the drone leaves the allowed area, the drone does what the safety and failsafe ADR (software ADR 0006) specifies.
 
 ### Step 3.3: Optimize
 
@@ -455,13 +654,16 @@ Options to try, one at a time:
 
 ### Step 3.4: Write a Test Report
 
-Each round of testing gets a short report in `docs/test-reports/` covering what was tested, the numbers obtained, what failed, and what will change. If a design decision changes because of the results, a new ADR is written and the old one is marked as replaced.
+Each round of testing gets a short report covering what was tested, the numbers obtained, what failed, and what will change. Simulation and software reports go in `docs/software/cross-cutting/testing/test-reports/` (new folder), and hardware and flight reports go in `docs/hardware/5-integration-and-verification/test-reports/`. If a design decision changes because of the results, a new ADR is written and the old one is marked as replaced.
 
 ### Deliverables
-- [ ] Automated tests for the code
+- [ ] Test strategy and automated tests for the code: `docs/software/cross-cutting/testing/test-strategy.md`
+- [ ] Automated test runs in CI: `docs/software/5-delivery/ci-cd-and-ops.md`
 - [ ] A working end-to-end prototype in simulation (even with a weak network)
 - [ ] A table of measured numbers compared with the targets
-- [ ] Test reports
+- [ ] Bench test plan for the later hardware tests: `docs/hardware/5-integration-and-verification/bench-test-plan.md`
+- [ ] Overall verification plan: `docs/hardware/cross-cutting/verification/test-and-verification-plan.md`
+- [ ] Test reports: see Step 3.4 for the locations
 - [ ] Updated ADRs if any decision changed
 
 ### Completion Criteria
@@ -548,11 +750,13 @@ Full missions are then tested:
 Each mission runs hundreds of times in different randomized worlds, recording the success rate, the collisions and the time taken.
 
 ### Deliverables
-- [ ] A dataset with a documented structure and split
+- [ ] A dataset with a documented structure and split: `docs/software/4-detailed-design/erd.md`
 - [ ] A trained and versioned model with its training logs
 - [ ] An ONNX export of the final model
+- [ ] Build and training plan: `docs/software/5-delivery/build-plan.md`
+- [ ] Simulation loop and mission flow documented: `docs/software/4-detailed-design/sequence-flows.md` and `lifecycles.md`
 - [ ] A full mission demo video in simulation
-- [ ] A results report comparing the numbers against the targets
+- [ ] A results report comparing the numbers against the targets: `docs/software/cross-cutting/testing/test-reports/`
 - [ ] An ADR for any important design change
 
 ### Completion Criteria
@@ -566,6 +770,8 @@ Stage 4 is complete when the drone completes missions in simulation reliably acr
 Move from the simulator to the real world. This is the stage with the highest risk, so progress is slow and careful, and a way to take back manual control is always available.
 
 ### Step 5.1: Choose and Buy the Components
+
+Research notes for each component category live in `docs/hardware/components/` (`batteries.md`, `flight-controllers.md`, `frame-and-propellers.md`, `motors-and-escs.md`, `sensors-and-payload.md`). The final selection goes into the bill of materials in `docs/hardware/6-assembly/`.
 
 | Component | Function | Checks before buying |
 |-----------|----------|----------------------|
@@ -587,7 +793,7 @@ Move from the simulator to the real world. This is the stage with the highest ri
 
 ### Step 5.2: Build and Test Step by Step
 
-The test ladder is followed in order. No step is skipped, and no step is climbed until the one below is solid.
+The test ladder is followed in order. No step is skipped, and no step is climbed until the one below is solid. The ladder is documented in `bench-test-plan.md`, `bring-up-procedures.md` and `flight-test-plan.md` under `docs/hardware/5-integration-and-verification/`.
 
 ```mermaid
 flowchart TD
@@ -652,11 +858,16 @@ sequenceDiagram
 ```
 
 ### Deliverables
-- [ ] A finished parts list and wiring diagram in `hardware/`
-- [ ] A build log with photos and notes
-- [ ] Real sensor logs saved in `data/`
-- [ ] A comparison report: simulated data vs real data
-- [ ] A video of the first autonomous real flight
+- [ ] Detailed design (schematics, CAD notes, material selection, structural analysis): `docs/hardware/4-detailed-design/`
+- [ ] Wiring diagram, mounting plan and configuration: `docs/hardware/4-integration-design/`
+- [ ] Hardware-software interface: `docs/hardware/4-detailed-design/hardware-software-interface.md` and `docs/hardware/4-integration-design/hardware-software-interface.md`
+- [ ] Finished parts list: `docs/hardware/6-assembly/bill-of-materials.md` and `component_bill.xlsx`
+- [ ] Assembly instructions and build log with photos and notes: `docs/hardware/6-assembly/assembly-instructions.md`
+- [ ] Bench, bring-up and flight test plans: `docs/hardware/5-integration-and-verification/`
+- [ ] Real sensor logs saved in `data/` (outside `docs/`)
+- [ ] A comparison report (simulated data vs real data) and a note on the first autonomous real flight: `docs/hardware/5-integration-and-verification/test-reports/`
+- [ ] Failure modes and safety case updated for the real drone: `docs/hardware/cross-cutting/safety-and-compliance/`
+- [ ] Threat model for the radio and telemetry links: `docs/software/cross-cutting/security/threat-model.md`
 - [ ] Updated ADRs for hardware changes
 
 ### Completion Criteria
@@ -759,12 +970,15 @@ flowchart TD
 - Check the local rules about spraying from a drone before doing it.
 
 ### Deliverables
-- [ ] Payload design and wiring diagram
-- [ ] Pump calibration results (liquid amount per second)
-- [ ] Flight time results with an empty and a full tank
-- [ ] Mission logic documented as a diagram
+- [ ] Payload design: `docs/hardware/components/sensors-and-payload.md` and `docs/hardware/3-high-level-design/mechanical-layout.md`
+- [ ] Updated power budget with the pump and the extra weight: `docs/hardware/3-high-level-design/power-budget.md`
+- [ ] Payload wiring diagram: `docs/hardware/4-integration-design/wiring-diagram.md`
+- [ ] Pump calibration results (liquid amount per second) and flight time results with an empty and a full tank: `docs/hardware/5-integration-and-verification/test-reports/`
+- [ ] Mission logic documented as a diagram: `docs/software/4-detailed-design/lifecycles.md` and `sequence-flows.md`
+- [ ] Spill, leak and liquid-on-electronics failure modes: `docs/hardware/cross-cutting/safety-and-compliance/failure-modes-and-effects.md`
+- [ ] Spraying rules of the country of operation: `docs/hardware/cross-cutting/safety-and-compliance/regulatory-requirements.md`
 - [ ] Video of a real watering mission
-- [ ] ADRs for the payload and plant detection decisions
+- [ ] ADRs for the payload (hardware track) and plant detection (software track) decisions
 
 ### Completion Criteria
 Stage 6 is complete when the drone completes a real watering mission by itself: it takes off, finds the plants, gives each one the right amount of water, then returns and lands safely.
@@ -772,6 +986,8 @@ Stage 6 is complete when the drone completes a real watering mission by itself: 
 ---
 
 ## Safety Rules
+
+These rules are the starting point for the formal safety documents in `docs/hardware/cross-cutting/safety-and-compliance/` (`failure-modes-and-effects.md`, `safety-case.md` and `regulatory-requirements.md`).
 
 1. **Propellers are OFF** during wiring work, motor tests, and whenever the drone is connected to a computer.
 2. **A manual override is always available.** The RC transmitter with a kill switch stays in hand at all times.
